@@ -4,24 +4,24 @@
 
 EEG data collected from [Wang et al., 2022.](https://www.nature.com/articles/s41597-022-01607-9)
 
-```
-# Install antropy package to calculate complexity
+```python
+# Install antropy package to calculate complexity.
 
-pip install antropy
+pip install antropy  #output: data_real_disc.csv
 
-# Calculating entropy across time series
+# Calculating entropy across time series.
 
-python complexity_analysis_EEG.py
+python calculate_EEG_complexity.py
 
-# Running topography analysis
+# Running topography analysis.
 
 python topography.py
 
-# Running statistical analysis
+# Running statistical analysis.
 
 python data_real_analysis.py
 
-# Running discontinuity analysis
+# Running discontinuity analysis.
 
 python discontinuity.py
 
