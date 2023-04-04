@@ -1,4 +1,4 @@
-# CogComplexity
+# CogComplex
 
 ## A research project investigating whether complexity is a valid marker for  cognitive control in EEG.
 
