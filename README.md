@@ -4,7 +4,6 @@
 
 EEG data collected from [Wang et al., 2022](https://www.nature.com/articles/s41597-022-01607-9)
 
-`code`
-# Download antropy package to calculate complexity
+`# Download antropy package to calculate complexity
+pip install antropy`
 
-pip install antropy
