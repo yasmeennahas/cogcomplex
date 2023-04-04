@@ -11,7 +11,7 @@ pip install antropy
 
 # Calculating entropy across time series.
 
-python calculate_EEG_complexity.py #output: data_real_disc.csv
+python calculate_EEG_complexity.py #output: data_real_disc.csv (subject, session, task, channel, complexity, discontinuity)
 
 # Running topography analysis.
 
@@ -19,10 +19,10 @@ python topography.py #output: topography.png(s) for each task
 
 # Running statistical analysis.
 
-python data_real_analysis.py #output: anova and pairwise analysis, boxplots
+python data_real_analysis.py #output: anova, pairwise, wilcoxon, boxplots
 
 # Running discontinuity analysis.
 
-python discontinuity.py #output: discontinuity scatterplot and correlation
+python discontinuity.py #output: discontinuity to complexity scatterplot, r square, correlation
 
 ```
