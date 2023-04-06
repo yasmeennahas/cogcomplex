@@ -19,7 +19,7 @@ python topography.py #output: topography.png(s) for each task
 
 # Running statistical analysis.
 
-python data_real_analysis.py #output: anova, pairwise, wilcoxon, boxplots
+python statistical_analysis_EC_Ma.py #output: anova, pairwise, wilcoxon, boxplots for Math and Eyes Closed tasks only
 
 # Running discontinuity analysis.
 
