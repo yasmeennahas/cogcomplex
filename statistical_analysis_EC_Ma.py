@@ -76,5 +76,13 @@ for c, cdf in no_sesh_math_ec.groupby("channel"):
 df = pd.concat(results).reset_index(drop=False)
 df.to_csv(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\wilcoxon.csv')
 
+#making a table of only significant difference in complexity across channels
+sig_wilc = df.loc[df["p-val"] <= 0.05]
+sig_wilc.to_csv(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\sig_wilc.csv')
+
+
+
+
+
 
 
