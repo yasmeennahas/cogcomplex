@@ -100,7 +100,7 @@ ax2.set_title('Ma Topomap')
 # Add a title for the entire figure
 fig.suptitle('Topomap Plots')
 
-# Adding a colorbar
+# Adding a colorbar (need to work on this as well)
 fig.colorbar()
 
 # Show the figure

@@ -13,15 +13,15 @@ df = pd.read_csv(import_path)
 math_ec = df[df['task'].str.contains('EC|Ma', regex=True)]
 
 ############################################################################################
-# Boxplots of difference in overall complexity across tasks and conditions
+# Boxplots to visualize difference in overall complexity across tasks and sessions 
 ############################################################################################
 
-# boxplot of complexity across all tasks
+# boxplot of complexity across  tasks
 sns.boxplot(data = math_ec, x = 'task', y = 'complexity')
 plt.savefig(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\boxplot.png')
 plt.show()
 
-# boxplot of complexity across all tasks by session
+# boxplot of complexity across  tasks by session
 sns.boxplot(data = math_ec, x = 'task', y = 'complexity', hue = 'session')
 plt.savefig(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\boxplot_with_sesh.png')
 plt.show()
@@ -62,15 +62,15 @@ no_sesh_math_ec = math_ec.groupby(["subject", "channel", "task"]).agg({'complexi
 
 # create list to hold results
 results = []
-# Loop over each channel...
+# Loop over each channel
 for c, cdf in no_sesh_math_ec.groupby("channel"):
     # grab values for each one of the task (EC and Ma)
     x = cdf.query("task=='EC'")["complexity"].values
     y = cdf.query("task=='Ma'")["complexity"].values
-    # conduct a wilcoxon analysis comparing complexity values across EC and Ma
+    # wilcoxon text comparing complexity values across EC and Ma for each channel
     wilc = pg.wilcoxon(x, y)
     wilc.index = pd.Index([c], name="channel")
-    # append the wilcoxon analysis to results
+    # append the wilcoxon analysis of all channel to results list
     results.append(wilc)
 # stack all results into one dataframe
 df = pd.concat(results).reset_index(drop=False)

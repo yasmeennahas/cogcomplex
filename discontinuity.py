@@ -6,6 +6,8 @@ import pingouin as pg
 import seaborn as sns
 import scipy.stats._stats_py
 
+# loading complexity and discontinuity data (see calculate_EEG_complexity.py)
+
 import_path = r'C:\Users\Yasmeen\Desktop\thesis_project\results\data_real_disc.csv'
 
 df = pd.read_csv(import_path)
@@ -18,7 +20,7 @@ math_ec = df[df['task'].str.contains('EC|Ma', regex=True)]
 # correlation between discontinuity and complexity across tasks
 ############################################################################################
 
-# Get a new dataframe that has 1 compl and 1 discont per participant (ie, averaging across sessions)
+#correlating within tasks
 
 results = (math_ec
     # Get average across sessions for each task and subject combo
@@ -33,12 +35,12 @@ results = (math_ec
 # Export correlation results
 results.to_csv(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\tasks_comp2disc_r.csv')
 
-#looking at corr of complexity and discontinuity without parsing tasks
+# without correlaing within task
 
 results = (math_ec
     # Get average across sessions for each task and subject combo
     .groupby(["task", "subject"])[["complexity", "discontinuity"]].mean().corr()
-    # keeping only complexity
+    # Organize columns (clean up)
     .drop(columns="complexity").reset_index())
 
 # Export correlation results
