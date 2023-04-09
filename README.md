@@ -26,8 +26,11 @@ The `config.py` file holds global variables that are useful to have standardized
 # Calculate entropy across time series.
 python calculate_complexity.py  #output: complexity.csv (columns: subject, session, task, channel, complexity)
 
-# Run statistical analysis.
+# Run statistical analysis (Wilcoxon test between tasks for each channel).
 python statistical_analysis.py  #output: complexity_stats.csv
+
+# Visualize main and general effects.
+python exploratory_plots.py  #output: complexity_plot-all_sess_chan.png & complexity_plot-avg_sess_chan.png
 
 # Run topography analysis.
 python topography.py  #output: topography.png(s) for each task
