@@ -1,4 +1,5 @@
-"""CODE FOR COMPLEXITY CALCULATION IN EEG DATA
+"""
+COMPLEXITY CALCULATION IN EEG DATA
 
 EEG complexity is calculated for across all channels for each relevant subject/session/task.
 The output is a single dataframe with one row for each complexity value:
