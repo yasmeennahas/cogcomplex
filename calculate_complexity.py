@@ -21,9 +21,10 @@ from config import *
 # Identify importing/exporting filepaths
 export_filename = results_directory / "complexity.csv"
 preproc_directory = data_directory / "derivatives" / "preprocessed data" / "preprocessed_data"
-eeg_filenames = preproc_directory.glob("*.set")
 
-# Reduce files to only eyes closed (EC) and math (Ma) tasks
+# Get all the EEG filenames.
+eeg_filenames = preproc_directory.glob("*.set")
+# Reduce EEG filenames to only eyes closed (EC) and math (Ma) tasks
 eeg_filenames = [f for f in eeg_filenames if "EC" in f.stem or "Ma" in f.stem]
 
 # Make empty list to append results
