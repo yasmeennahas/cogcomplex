@@ -1,28 +1,40 @@
 # CogComplex
 
-## A research project investigating whether complexity is a valid marker for  cognitive control in EEG
+A research project investigating whether complexity is a valid marker for cognitive control in EEG.
 
-EEG data collected from [Wang et al., 2022.](https://www.nature.com/articles/s41597-022-01607-9)
 
-```python
-# Install antropy package to calculate complexity
+## Data
 
-pip install antropy  
+Data comes from a previously-published dataset ([Wang et al., 2022.](https://www.nature.com/articles/s41597-022-01607-9)). Download the dataset in it's entirety from [here](https://openneuro.org/datasets/ds004148/versions/1.0.1) and be sure to specify its location in the `config.py` file.
 
-# Calculating entropy across time series.
 
-python calculate_EEG_complexity.py #output: data_real_disc.csv (subject, session, task, channel, complexity, discontinuity)
+## Analyses
 
-# Running topography analysis.
+In addition to standard Python packages (e.g., `numpy`), the analysis scripts rely heavily on the `mne` and `antropy` packages (the latter is used to calculate complexity).
 
-python topography.py #output: topography.png(s) for each task
+```shell
+# Install MNE package for loading in EEG data.
+pip install mne
 
-# Running statistical analysis.
+# Install antropy package for calculating complexity.
+pip install antropy
+```
 
-python statistical_analysis_EC_Ma.py #output: anova, pairwise, wilcoxon, boxplots for Math and Eyes Closed tasks only
+The `config.py` file holds global variables that are useful to have standardized across all analysis scripts. Mostly this is for specifying directory locations. Be sure to specify the proper directories in that file before running the following analysis code.
 
-# Running discontinuity analysis.
+```shell
+# Calculate entropy across time series.
+python calculate_complexity.py  #output: complexity.csv (columns: subject, session, task, channel, complexity)
 
-python discontinuity.py #output: discontinuity to complexity scatterplot, r square, correlation
+# Run statistical analysis (Wilcoxon test between tasks for each channel).
+python statistical_analysis.py  #output: complexity_stats.csv
 
+# Visualize main and general effects.
+python exploratory_plots.py  #output: complexity_plot-all_sess_chan.png & complexity_plot-avg_sess_chan.png
+
+# Run topography analysis.
+python topography.py  #output: topography.png(s) for each task
+
+# Run discontinuity analysis.
+python discontinuity.py  #output: discontinuity to complexity scatterplot, r square, correlation
 ```
