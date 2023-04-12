@@ -14,7 +14,7 @@ df = pd.read_csv(import_path)
 
 # Getting the data for eyes open and eyes closed only tasks (resting state tasks)
 
-eo_ec = df[df['task'].str.contains('EC|EO', regex=True)]
+ec = df[df['task'].str.contains('EC', regex=True)]
 
 ############################################################################################
 # correlation between discontinuity and complexity across resting state tasks
@@ -22,7 +22,7 @@ eo_ec = df[df['task'].str.contains('EC|EO', regex=True)]
 
 #correlating within tasks
 
-results = (eo_ec
+results = (ec
     # Get average across sessions for each task and subject combo
     .groupby(["task", "subject"])[["complexity", "discontinuity"]].mean()
     # Get correlation across task for each task
@@ -36,7 +36,7 @@ results.to_csv(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\tasks_c
 
 # without correlaing within task
 
-results = (eo_ec
+results = (ec
     # Get average across sessions for each task and subject combo
     .groupby(["task", "subject"])[["complexity", "discontinuity"]].mean().corr()
     # Organize columns (clean up)
@@ -50,19 +50,20 @@ results.to_csv(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\r_comp2
 # looking at scatter plot of discontinutiy and complexity 
 ############################################################################################
 
+
 # Drop NaN values from the dataframe
-eo_ec = eo_ec.dropna()
+ec = ec.dropna()
 
 # Create the scatterplot
 fig, ax = plt.subplots()
-sns.scatterplot(data=eo_ec, x="discontinuity", y="complexity", ax=ax)
+sns.scatterplot(data=ec, x="discontinuity", y="complexity", ax=ax)
 
 # Add trendline and R-squared value
-sns.regplot(data=eo_ec, x="discontinuity", y="complexity", scatter=False, ax=ax)
-slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(eo_ec["discontinuity"], eo_ec["complexity"])
+sns.regplot(data=ec, x="discontinuity", y="complexity", scatter=False, ax=ax)
+slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(ec["discontinuity"], ec["complexity"])
 plt.text(0.85, 0.05, f"R^2 = {r_value:.2f}", transform=ax.transAxes, fontsize=12, verticalalignment='top')
 
 # Show the plot
-plt.show()
-plt.savefig(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\disc_complexity_scatter.png')
+#plt.show()
+plt.savefig(r'C:\Users\Yasmeen\Desktop\thesis_project\results\math_ec\disc_complexity_scatter_ec.png')
 
