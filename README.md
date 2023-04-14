@@ -23,8 +23,11 @@ pip install antropy
 The `config.py` file holds global variables that are useful to have standardized across all analysis scripts. Mostly this is for specifying directory locations. Be sure to specify the proper directories in that file before running the following analysis code.
 
 ```shell
-# Calculate entropy across time series.
-python calculate_complexity.py  #output: complexity.csv (columns: subject, session, task, channel, complexity)
+# Calculate permutation entropy across time series.
+python permutation_entrop.py  #output: complexity.csv (columns: subject, session, task, channel, complexity)
+
+# Calculate lempel ziv complexity across time series.
+python lempel_ziv.py  #output: lempel_ziv.csv (columns: subject, session, task, channel, complexity)
 
 # Run statistical analysis (Wilcoxon test between tasks for each channel).
 python statistical_analysis.py  #output: complexity_stats.csv
