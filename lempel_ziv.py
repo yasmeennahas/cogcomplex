@@ -10,8 +10,8 @@ from config import *
 
 
 # Identify importing/exporting filepaths
-export_filename = r'C:\Users\Yasmeen\Desktop\thesis_project\results\final_new_stuff\lz_complexity.csv'
-preproc_directory = Path('C:/Users/Yasmeen/Desktop/thesis_project/data/data_thesis/derivatives/preprocessed data/preprocessed_data')
+export_filename = results_directory / "lempel_ziv.csv"
+preproc_directory = data_directory / "derivatives" / "preprocessed data" / "preprocessed_data"
 
 # Get all the EEG filenames.
 eeg_filenames = preproc_directory.glob("*.set")
