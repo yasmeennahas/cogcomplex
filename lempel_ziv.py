@@ -1,3 +1,14 @@
+"""
+COMPLEXITY CALCULATION IN EEG DATA
+EEG complexity is calculated for across all channels for each relevant subject/session/task.
+The output is a single dataframe with one row for each complexity value:
+    subject session task    channel complexity
+    1       1       EC      Fp1     0.952046758
+    1       1       EC      AF3     0.964580791
+    1       1       EC      AF7     0.960290503
+    ...
+"""
+
 from pathlib import Path
 import numpy as np
 import mne
@@ -61,7 +72,6 @@ for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
 
     # Compute the mean and standard deviation of the Lempel-Ziv complexity values
     mean_lz = np.mean(lz_complexity_values)
-    #std_lz = np.std(lz_complexity_values)
 
 
     df_ = pd.DataFrame(
