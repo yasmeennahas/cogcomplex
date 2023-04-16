@@ -54,23 +54,3 @@ stats = stats.sort_values("p-val")
 
 # Export single dataframe holding all pairwise comparisons
 stats.to_csv(export_path, index=False)
-
-import random
-
-# Performing the FDR adjustment
-p_val_list = stats["p-val"]
-
-# Assigning a rank to each item in list, start at 1
-rank = 1
-len_p_val_list = len(p_val_list)
-p_adj_list = []
-for p in p_val_list:
-    fdr_adj_p_val = p*len_p_val_list/rank
-    rank += 1
-    p_adj_list.append(
-        {
-            "p_val": p,
-            "fdr_adj_p_val": fdr_adj_p_val
-        }
-    )
-print()
