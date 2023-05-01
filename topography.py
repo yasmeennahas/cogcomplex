@@ -148,23 +148,19 @@ fig, axes = plt.subplots(ncols=4, figsize=(12, 3), gridspec_kw={"width_ratios": 
 vmin = min([ min(x) for x in [Mu_EC, Ma_EC, Me_EC]])
 vmax = max([ max(x) for x in [Mu_EC, Ma_EC, Me_EC]])
 
-# Display the EC topomap in the first subplot
-# img_ec, quad = plot_topomap(EC, raw.info, cmap= "BuPu",  vlim = (vmin, vmax), axes=axes[0], show = False)
-# axes[0].set_title('Resting State')
-
-# Display the Mu topomap in the second subplot
+# Display the Mu topomap in the first subplot
 img_mu, quad = plot_topomap(Mu_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), mask = sig_df.sig_channels.to_numpy(), mask_params=dict(marker='x', markerfacecolor='w', markeredgecolor='k', linewidth=0, markersize=5), axes=axes[0], show = False)
 axes[0].set_title('Music - Resting')
 
-# Display the Ma topomap in the third subplot
+# Display the Ma topomap in the second subplot
 img_ma, quad = plot_topomap(Ma_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), axes=axes[1], show = False)
 axes[1].set_title('Math - Resting')
 
-# Display the Me topomap in the fourth subplot
+# Display the Me topomap in the third subplot
 img_me, quad  = plot_topomap(Me_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), axes=axes[2], show = False)
 axes[2].set_title('Memory - Resting')
 
-# Setting the label for the gradient bar
+# Setting the label for the color bar
 axes[3].set_title('Differece in Permutation \n Entropy Complexity')
 
 plt.colorbar(mappable=img_mu, ax=axes[0:3], cax=axes[3])
@@ -253,23 +249,19 @@ fig, axes = plt.subplots(ncols=4, figsize=(12, 3), gridspec_kw={"width_ratios": 
 vmin = min([ min(x) for x in [Mu_EC, Ma_EC, Me_EC]])
 vmax = max([ max(x) for x in [Mu_EC, Ma_EC, Me_EC]])
 
-# Display the EC topomap in the first subplot
-# img_ec, quad = plot_topomap(EC, raw.info, cmap= "BuPu",  vlim = (vmin, vmax), axes=axes[0], show = False)
-# axes[0].set_title('Resting State')
-
-# Display the Mu topomap in the second subplot
+# Display the Mu topomap in the first subplot
 img_mu, quad = plot_topomap(Mu_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), axes=axes[0], show = False)
 axes[0].set_title('Music - Resting')
 
-# Display the Ma topomap in the third subplot
+# Display the Ma topomap in the second subplot
 img_ma, quad = plot_topomap(Ma_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), axes=axes[1], show = False)
 axes[1].set_title('Math - Resting')
 
-# Display the Me topomap in the fourth subplot
+# Display the Me topomap in the third subplot
 img_me, quad  = plot_topomap(Me_EC, raw.info, cmap="PuBu", vlim = (vmin, vmax), axes=axes[2], show = False)
 axes[2].set_title('Memory - Resting')
 
-# Setting the label for the gradient bar
+# Setting the label for the color bar
 axes[3].set_title('Differece in Permutation \n Entropy Complexity')
 
 plt.colorbar(mappable=img_mu, ax=axes[0:3], cax=axes[3])
