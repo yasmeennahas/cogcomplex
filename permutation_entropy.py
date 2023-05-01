@@ -34,18 +34,23 @@ results = []
 # Loop over all files and calculate complexity (for each channel) for each
 for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
 
-    # Parse out subject, session, and task information
+    # Parse out subject information
     file_str = file.name
-    subject = int(file_str[3:5])
+    subject = int(file_str[3:5]) - 1
     session = int(file_str[6:8])
     task = file_str[9:11]
+    
+    #getting the discontinuity values
 
-    # Load in the EEG file and extract data as a numpy array
-    raw = mne.io.read_raw_eeglab(file, preload=True)
+    participants.set_index('participant_id') 
+    column_name = f'(1)Discontinuity of Mind_session{session}'
+    disc_value = participants[column_name].iloc[subject]
+
+    # Extract EEG data as numpy array
     data = raw.get_data()
 
-    # Get permutation entropy (i.e., complexity) for every channel
-    complexity = np.apply_along_axis(ant.perm_entropy, axis=1, arr=data, normalize=True)
+    # Get entropy for every vhannel.
+    perm = np.apply_along_axis(ant.perm_entropy, axis=1, arr=data, normalize=True)
 
     df_ = pd.DataFrame(
         {
@@ -53,7 +58,8 @@ for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
             "session": session,
             "task": task,
             "channel": raw.ch_names,
-            "complexity": complexity,
+            "complexity": perm,
+            "discontinuity": disc_value
         }
     )
 
