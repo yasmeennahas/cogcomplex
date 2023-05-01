@@ -21,7 +21,7 @@ from config import *
 
 
 # Identify importing/exporting filepaths
-export_filename = results_directory / "lempel_ziv.csv"
+export_filename = results_directory / "complexity_lz.csv"
 preproc_directory = data_directory / "derivatives" / "preprocessed data" / "preprocessed_data"
 
 # Get all the EEG filenames.
