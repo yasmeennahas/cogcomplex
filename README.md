@@ -29,14 +29,11 @@ python permutation_entrop.py  #output: complexity.csv (columns: subject, session
 # Calculate lempel ziv complexity across time series.
 python lempel_ziv.py  #output: lempel_ziv.csv (columns: subject, session, task, channel, complexity)
 
-# Run statistical analysis (Wilcoxon test between tasks for each channel).
-python statistical_analysis.py  #output: complexity_stats.csv
-
-# Visualize main and general effects.
-python exploratory_plots.py  #output: complexity_plot-all_sess_chan.png & complexity_plot-avg_sess_chan.png
+# Run statistical analysis and plots (ANOVA, paiwise, boxplot, Wilcoxon).
+python statistical_analysis.py  #output: complexity_stats.csv and plots.png
 
 # Run topography analysis.
-python topography.py  #output: topography.png(s) for each task
+python topography.py  #output: topography.png
 
 # Run discontinuity analysis.
 python discontinuity.py  #output: discontinuity to complexity scatterplot, r square, correlation
