@@ -23,11 +23,11 @@ from config import *
 # Identify importing/exporting filepaths
 export_filename = results_directory / "complexity_lz.csv"
 preproc_directory = data_directory / "derivatives" / "preprocessed data" / "preprocessed_data"
-
 # Get all the EEG filenames.
 eeg_filenames = preproc_directory.glob("*.set")
 # Reduce EEG filenames to only eyes closed (EC) and math (Ma) tasks
-eeg_filenames = [f for f in eeg_filenames if "EC" in f.stem or "Ma" in f.stem]
+eeg_filenames = [f for f in eeg_filenames if "EC" in f.stem or "Ma" in f.stem or "Me" in f.stem or "Mu" in f.stem]
+
 
 # Make empty list to append results
 results = []
@@ -37,9 +37,15 @@ for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
 
     # Parse out subject, session, and task information
     file_str = file.name
-    subject = int(file_str[3:5])
+    subject = int(file_str[3:5]) - 1
     session = int(file_str[6:8])
     task = file_str[9:11]
+
+    #getting the discontinuity values
+
+    participants.set_index('participant_id') 
+    column_name = f'(1)Discontinuity of Mind_session{session}'
+    disc_value = participants[column_name].iloc[subject]
 
     # Load in the EEG file and extract data as a numpy array
     raw = mne.io.read_raw_eeglab(file, preload=True)
@@ -67,11 +73,12 @@ for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
     for i in range(len(binarized_data)):
         epoch_data = binarized_data[i][0]
         # Calculate the Lempel-Ziv complexity using the antropy package
-        lz = ant.lziv_complexity(epoch_data)
+        lz = ant.lziv_complexity(epoch_data, normalize = True)
         lz_complexity_values.append(lz)
 
     # Compute the mean and standard deviation of the Lempel-Ziv complexity values
     mean_lz = np.mean(lz_complexity_values)
+    #std_lz = np.std(lz_complexity_values)
 
 
     df_ = pd.DataFrame(
@@ -81,8 +88,10 @@ for file in tqdm(eeg_filenames, desc="Complexity for all sessions"):
             "task": task,
             "channel": raw.ch_names,
             "complexity": mean_lz,
+            "discontinuity": disc_value
         }
     )
+
 
     results.append(df_)
 
@@ -91,3 +100,4 @@ df = pd.concat(results, ignore_index=True)
 
 # Export single dataframe holding all results
 df.to_csv(export_filename, index=False)
+
