@@ -20,7 +20,7 @@ from config import *
 
 
 # Identify importing/exporting filepaths
-export_filename = results_directory / "complexity.csv"
+export_filename = results_directory / "complexity_perm.csv"
 preproc_directory = data_directory / "derivatives" / "preprocessed data" / "preprocessed_data"
 
 # Get all the EEG filenames.
